@@ -1,0 +1,11 @@
+{
+  "extensionName": {
+    "message": "Ping Blocker",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "Stop sites from tracking the links you visit through hyperlink auditing.",
+    "description": "Description of the extension."
+  }
+}
