@@ -16,7 +16,7 @@ please consider contributing with
 [Patreon](https://armin.dev/go/patreon?pr=ping-blocker&src=repo),
 [PayPal](https://armin.dev/go/paypal?pr=ping-blocker&src=repo) or
 [Bitcoin](https://armin.dev/go/bitcoin?pr=ping-blocker&src=repo).
- 
+
 ## Description
 
 Ping Blocker is a browser extension that prevents sites from tracking
