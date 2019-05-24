@@ -4,7 +4,6 @@ const {lstatSync, readdirSync, readFileSync, writeFileSync} = require('fs');
 
 const {ensureDirSync} = require('fs-extra');
 const gulp = require('gulp');
-const gulpSeq = require('gulp-sequence');
 const htmlmin = require('gulp-htmlmin');
 const gulpif = require('gulp-if');
 const del = require('del');
@@ -12,7 +11,6 @@ const jsonMerge = require('gulp-merge-json');
 const jsonmin = require('gulp-jsonmin');
 const svg2png = require('svg2png');
 const imagemin = require('gulp-imagemin');
-const dedent = require('dedent');
 
 const targetEnv = process.env.TARGET_ENV || 'firefox';
 const isProduction = process.env.NODE_ENV === 'production';
@@ -34,14 +32,15 @@ gulp.task('js', function(done) {
   });
 });
 
-gulp.task('html', function() {
-  return gulp
+gulp.task('html', function(done) {
+  gulp
     .src('src/**/*.html', {base: '.'})
     .pipe(gulpif(isProduction, htmlmin({collapseWhitespace: true})))
     .pipe(gulp.dest(distDir));
+  done();
 });
 
-gulp.task('icons', async function() {
+gulp.task('icons', async function(done) {
   ensureDirSync(`${distDir}/src/icons/app`);
   const iconSvg = readFileSync('src/icons/app/icon.svg');
   const appIconSizes = [16, 19, 24, 32, 38, 48, 64, 96, 128];
@@ -54,11 +53,12 @@ gulp.task('icons', async function() {
     gulp
       .src(`${distDir}/src/icons/**/*.png`, {base: '.'})
       .pipe(imagemin())
-      .pipe(gulp.dest(''));
+      .pipe(gulp.dest('.'));
+    done();
   }
 });
 
-gulp.task('locale', function() {
+gulp.task('locale', function(done) {
   const localesRootDir = path.join(__dirname, 'src/_locales');
   const localeDirs = readdirSync(localesRootDir).filter(function(file) {
     return lstatSync(path.join(localesRootDir, file)).isDirectory();
@@ -66,10 +66,13 @@ gulp.task('locale', function() {
   localeDirs.forEach(function(localeDir) {
     const localePath = path.join(localesRootDir, localeDir);
     gulp
-      .src([
-        path.join(localePath, 'messages.json'),
-        path.join(localePath, `messages-${targetEnv}.json`)
-      ])
+      .src(
+        [
+          path.join(localePath, 'messages.json'),
+          path.join(localePath, `messages-${targetEnv}.json`)
+        ],
+        {allowEmpty: true}
+      )
       .pipe(
         jsonMerge({
           fileName: 'messages.json',
@@ -88,9 +91,10 @@ gulp.task('locale', function() {
       .pipe(gulpif(isProduction, jsonmin()))
       .pipe(gulp.dest(path.join(distDir, '_locales', localeDir)));
   });
+  done();
 });
 
-gulp.task('manifest', function() {
+gulp.task('manifest', function(done) {
   return gulp
     .src('src/manifest.json')
     .pipe(
@@ -116,30 +120,34 @@ gulp.task('manifest', function() {
     )
     .pipe(gulpif(isProduction, jsonmin()))
     .pipe(gulp.dest(distDir));
+  done();
 });
 
-gulp.task('license', function() {
+gulp.task('license', function(done) {
   let year = 2019;
   const currentYear = new Date().getFullYear();
   if (year !== currentYear) {
     year = `${year}-${currentYear}`;
   }
 
-  const notice = dedent`
-    Ping Blocker
-    Copyright (c) ${year} Armin Sebastian
+  const notice = `Ping Blocker
+Copyright (c) ${year} Armin Sebastian
 
-    This software is released under the terms of the GNU General Public License v3.0.
-    See the LICENSE file for further information.
-  `;
+This software is released under the terms of the GNU General Public License v3.0.
+See the LICENSE file for further information.
+`;
 
   writeFileSync(`${distDir}/NOTICE`, notice);
   gulp.src(['LICENSE']).pipe(gulp.dest(distDir));
+  done();
 });
 
 gulp.task(
   'build',
-  gulpSeq('clean', ['js', 'html', 'icons', 'locale', 'manifest', 'license'])
+  gulp.series(
+    'clean',
+    gulp.parallel('js', 'html', 'icons', 'locale', 'manifest', 'license')
+  )
 );
 
 gulp.task('zip', function(done) {
@@ -164,4 +172,4 @@ gulp.task('inspect', function(done) {
   );
 });
 
-gulp.task('default', ['build']);
+gulp.task('default', gulp.series('build'));
