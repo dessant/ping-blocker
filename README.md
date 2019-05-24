@@ -12,13 +12,16 @@
 
 The continued development of Ping Blocker is made possible
 thanks to the support of awesome backers. If you'd like to join them,
-please consider contributing with [Patreon](https://www.patreon.com/dessant),
-[PayPal](https://www.paypal.me/ArminSebastian) or [Bitcoin](https://goo.gl/uJUAaU).
-
+please consider contributing with
+[Patreon](https://armin.dev/go/patreon?pr=ping-blocker&src=repo),
+[PayPal](https://armin.dev/go/paypal?pr=ping-blocker&src=repo) or
+[Bitcoin](https://armin.dev/go/bitcoin?pr=ping-blocker&src=repo).
+ 
 ## Description
 
 Ping Blocker is a browser extension that prevents sites from tracking
-the links you visit through [hyperlink auditing](https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing).
+the links you visit through
+[hyperlink auditing](https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing).
 
 The extension blocks ping requests sent in the background when you click on links.
 Firefox disables ping requests by default, and other privacy-focused extensions
