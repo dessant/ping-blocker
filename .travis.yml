@@ -1,0 +1,26 @@
+jobs:
+  fast_finish: true
+  include:
+    - stage: build
+      install: docker build --tag ci .ci
+      script: docker run --init --rm -e TRAVIS_TAG --mount type=bind,source="${PWD}",target=/app ci
+      os: linux
+      dist: xenial
+      language: generic
+      services:
+        - docker
+
+before_deploy: sha256sum artifacts/*/*
+
+deploy:
+  provider: releases
+  api_key:
+    secure: "aZpk5Bg6h3g6iFjfafbfHmhGRN15/5P8UaU5IxJz89y3zbHIQINfey1DSX7Uj6WhNIrPjj4AmamIa0NnuGM/8JcJ7GXIAYbFrvmSOnSW3gdujvANunPC/Im+EMpwHhzBC5cbsCm3SLOru1TNK8BasxK3Pfu4rABTxEahXMDTpkzEkrvbyhAa2O3xWzv2YSb/DKPdhlEslG+5WNLTGAi2ZtZ4XwmKRN83Uwvv0hyyX0enW/+6yPR9hUNGdgeZ6TLXUl+iaMad590KbIMbWs3InRREdPI6RA/xrwc+95r/fgs0gqsTKK+UyCD2yGh9hGr/RIb5EbxQyiKLQ+k4LytR2DbVmEUoV1Gkv0M3PjWMV5s5oI2nFElVXhC2WFBw+cJtDhZ4xsZAleO5mk0sa0auRAEsYWIwLOYaURE0Xrozg1jvcD05dKKWGIxYXqCoVE39presxGVcbP4XBhgTMXumFoJRpjBM9kjXa0f9EUaIwEej0yULzfKpW8ld3Zu3JXm4jSv9ruok/6dwj5sLOWKghue3ccLXW+rfdpbFAwbRMSQVkTK+DRsvD8r8UR2G0YFvJBZp65xY4QVkisMC59t/E5UOVSaWXp+eNN3uYLofDKq+ZyU/SmEWH63BN24kyQzrREZtBZYG3GX/4BwkC6F7pC3knGSyPxvTNJVq6i3IZiU="
+  draft: true
+  file: artifacts/*/*
+  file_glob: true
+  overwrite: true
+  skip_cleanup: true
+  body: 'Download and install the extension from the [extension store](https://github.com/dessant/ping-blocker#readme) of your browser.<br>Learn more about this release from the [changelog](https://github.com/dessant/ping-blocker/blob/master/CHANGELOG.md#changelog).<br><br>The assets listed below are not for general use.'
+  on:
+    tags: true
