@@ -3,8 +3,8 @@ import browser from 'webextension-polyfill';
 import {initStorage} from 'storage/init';
 import {targetEnv} from 'utils/config';
 
-function addPingListener() {
-  const requestTypes = ['ping'];
+function addRequestListener() {
+  const requestTypes = ['ping', 'csp_report'];
   if (targetEnv === 'firefox') {
     requestTypes.push('beacon');
   }
@@ -25,7 +25,7 @@ function addPingListener() {
 
 async function onLoad() {
   await initStorage('sync');
-  addPingListener();
+  addRequestListener();
 }
 
 document.addEventListener('DOMContentLoaded', onLoad);
