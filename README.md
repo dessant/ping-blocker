@@ -3,7 +3,7 @@
 
 <p align="center">
   </br></br>
-  <a href="https://chrome.google.com/webstore/detail/ping-blocker/jkpocifanmihboebfhigkjcdihgfcdnb">
+  <a href="https://chrome.google.com/webstore/detail/jkpocifanmihboebfhigkjcdihgfcdnb">
     <img src="https://i.imgur.com/B0i5sn3.png" alt="Chrome Web Store"></a>
   </br></br>
 </p>
@@ -24,14 +24,10 @@ the links you visit through
 [hyperlink auditing](https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing).
 
 The extension blocks ping requests sent in the background when you click on links.
-Firefox disables ping requests by default, and other privacy-focused extensions
-may also block these requests, such as uBlock Origin and uMatrix.
+Beacon requests and CSP reports are also blocked.
 
-Verify if ping requests are currently sent by your browser by visiting
-[this](https://jsfiddle.net/wdgs28a0/) demo page. Open the developer tools
-of the browser and switch to the network panel, then click the link on
-the page. A request to `example.com/ping` may be listed in the network panel,
-possibly marked as blocked.
+Verify if ping requests are currently sent by your browser
+with [Ping Spotter](https://armin.dev/apps/ping-spotter/).
 
 ## Screenshots
 
