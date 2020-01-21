@@ -101,11 +101,11 @@ gulp.task('manifest', function(done) {
       jsonMerge({
         fileName: 'manifest.json',
         edit: (parsedJson, file) => {
-          if (['chrome', 'opera'].includes(targetEnv)) {
+          if (['chrome', 'edge', 'opera'].includes(targetEnv)) {
             delete parsedJson.applications;
           }
 
-          if (['chrome', 'firefox'].includes(targetEnv)) {
+          if (['chrome', 'edge', 'firefox'].includes(targetEnv)) {
             delete parsedJson.minimum_opera_version;
           }
 
