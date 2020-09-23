@@ -6,7 +6,7 @@
   <a href="https://chrome.google.com/webstore/detail/jkpocifanmihboebfhigkjcdihgfcdnb">
     <img src="https://i.imgur.com/B0i5sn3.png" alt="Chrome Web Store"></a>
   <a href="https://addons.mozilla.org/en-US/firefox/addon/ping-blocker/">
-    <img src="https://i.imgur.com/dvof8rG.png" alt="Firefox add-ons"></a>
+    <img src="https://i.imgur.com/kMH6r1a.png" alt="Firefox add-ons"></a>
   <a href="https://microsoftedge.microsoft.com/addons/detail/mafeokjngapchgdgnabeepkhfihiicpb">
     <img src="https://i.imgur.com/n49Wiu2.png" alt="Microsoft Store"></a>
   </br></br>
@@ -36,7 +36,7 @@ with [Ping Spotter](https://armin.dev/apps/ping-spotter/).
 ## Screenshots
 
 <p>
-  <img width="420" src="https://i.imgur.com/wusrp3m.png">
+  <img width="414" src="https://i.imgur.com/wusrp3m.png">
 </p>
 
 ## License
