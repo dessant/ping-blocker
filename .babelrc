@@ -1,8 +1,0 @@
-{
-  "presets": [["@babel/env", {"useBuiltIns": "usage"}]],
-  "env": {
-    "production": {
-      "plugins": ["lodash"]
-    }
-  }
-}

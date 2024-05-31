@@ -1,4 +1,4 @@
-<p align="center"><img width="128" height="128" src="https://i.imgur.com/XOvPosn.png"></p>
+<p align="center"><img width="128" height="128" src="https://i.imgur.com/oZmAoWk.png"></p>
 <h1 align="center">Ping Blocker</h1>
 
 <p align="center">
@@ -42,12 +42,12 @@ with [Ping Spotter](https://armin.dev/apps/ping-spotter/).
 ## Screenshots
 
 <p>
-  <img width="414" src="https://i.imgur.com/wusrp3m.png">
+  <img width="380" src="https://i.imgur.com/bBfWVnX.png">
 </p>
 
 ## License
 
-Copyright (c) 2019-2023 Armin Sebastian
+Copyright (c) 2019-2024 Armin Sebastian
 
 This software is released under the terms of the GNU General Public License v3.0.
 See the [LICENSE](LICENSE) file for further information.

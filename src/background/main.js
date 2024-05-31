@@ -1,31 +1,95 @@
-import browser from 'webextension-polyfill';
-
 import {initStorage} from 'storage/init';
-import {targetEnv} from 'utils/config';
+import {isStorageReady} from 'storage/storage';
+import {setAppVersion, getStartupState} from 'utils/app';
+import {runOnce} from 'utils/common';
+import {targetEnv, mv3} from 'utils/config';
 
-function addRequestListener() {
-  const requestTypes = ['ping', 'csp_report'];
+async function syncState() {
+  const resourceTypes = ['ping', 'csp_report'];
   if (targetEnv === 'firefox') {
-    requestTypes.push('beacon');
+    resourceTypes.push('beacon');
   }
 
-  browser.webRequest.onBeforeRequest.addListener(
-    function() {
-      return {
-        cancel: true
-      };
-    },
-    {
-      urls: ['*://*/*'],
-      types: requestTypes
-    },
-    ['blocking']
-  );
+  if (mv3) {
+    await browser.declarativeNetRequest.updateSessionRules({
+      removeRuleIds: [1],
+      addRules: [
+        {
+          id: 1,
+          action: {
+            type: 'block'
+          },
+          condition: {
+            resourceTypes
+          }
+        }
+      ]
+    });
+  } else {
+    browser.webRequest.onBeforeRequest.addListener(
+      function() {
+        return {
+          cancel: true
+        };
+      },
+      {
+        urls: ['*://*/*'],
+        types: resourceTypes
+      },
+      ['blocking']
+    );
+  }
 }
 
-async function onLoad() {
-  await initStorage('sync');
-  addRequestListener();
+async function onInstall(details) {
+  if (['install', 'update'].includes(details.reason)) {
+    await setup({event: 'install'});
+  }
 }
 
-document.addEventListener('DOMContentLoaded', onLoad);
+async function onStartup() {
+  await setup({event: 'startup'});
+}
+
+function addInstallListener() {
+  browser.runtime.onInstalled.addListener(onInstall);
+}
+
+function addStartupListener() {
+  browser.runtime.onStartup.addListener(onStartup);
+}
+
+async function setup({event = ''} = {}) {
+  const startup = await getStartupState({event});
+
+  if (startup.setupInstance) {
+    await runOnce('setupInstance', async () => {
+      if (!(await isStorageReady())) {
+        await initStorage();
+      }
+
+      if (startup.update) {
+        await setAppVersion();
+      }
+    });
+  }
+
+  if (startup.setupSession) {
+    await runOnce('setupSession', async () => {
+      if (mv3 && !(await isStorageReady({area: 'session'}))) {
+        await initStorage({area: 'session', silent: true});
+      }
+
+      await syncState();
+    });
+  }
+}
+
+function init() {
+  addInstallListener();
+  addStartupListener();
+
+  setup();
+}
+
+init();

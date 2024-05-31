@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "version": "0.1.0",
+  "author": "Armin Sebastian",
+  "homepage_url": "https://github.com/dessant/ping-blocker",
+  "default_locale": "en",
+
+  "minimum_chrome_version": "123.0",
+
+  "permissions": ["storage", "webRequest", "webRequestBlocking", "<all_urls>"],
+
+  "content_security_policy": "default-src 'self';",
+
+  "icons": {
+    "16": "src/assets/icons/app/icon-16.png",
+    "19": "src/assets/icons/app/icon-19.png",
+    "24": "src/assets/icons/app/icon-24.png",
+    "32": "src/assets/icons/app/icon-32.png",
+    "38": "src/assets/icons/app/icon-38.png",
+    "48": "src/assets/icons/app/icon-48.png",
+    "64": "src/assets/icons/app/icon-64.png",
+    "96": "src/assets/icons/app/icon-96.png",
+    "128": "src/assets/icons/app/icon-128.png"
+  },
+
+  "background": {
+    "page": "src/background/index.html"
+  },
+
+  "incognito": "split"
+}
