@@ -1,6 +1,18 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [2.0.0](https://github.com/dessant/ping-blocker/compare/v1.0.0...v2.0.0) (2024-05-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* browser versions older than Chrome 123, Edge 123,
+Firefox 115 and Opera 109 are no longer supported
+
+### Features
+
+* upgrade to Manifest V3 in Chrome ([d5d2140](https://github.com/dessant/ping-blocker/commit/d5d21401f32a7ea911d890fa742a69c2971b2ba3))
 
 ## [1.0.0](https://github.com/dessant/ping-blocker/compare/v0.2.0...v1.0.0) (2020-01-19)
 
