@@ -23,9 +23,9 @@
 The continued development of Ping Blocker is made possible
 thanks to the support of awesome backers. If you'd like to join them,
 please consider contributing with
-[Patreon](https://armin.dev/go/patreon?pr=ping-blocker&src=repo),
-[PayPal](https://armin.dev/go/paypal?pr=ping-blocker&src=repo) or
-[Bitcoin](https://armin.dev/go/bitcoin?pr=ping-blocker&src=repo).
+[Patreon](https://go.vapps.dev/patreon?pr=ping-blocker&src=repo),
+[PayPal](https://go.vapps.dev/paypal?pr=ping-blocker&src=repo) or
+[Bitcoin](https://go.vapps.dev/bitcoin?pr=ping-blocker&src=repo).
 
 ## Description
 
@@ -37,7 +37,7 @@ The extension blocks ping requests sent in the background when you click on link
 Beacon requests and CSP reports are also blocked.
 
 Verify if ping requests are currently sent by your browser
-with [Ping Spotter](https://armin.dev/apps/ping-spotter/).
+with [Ping Spotter](https://apps.armin.dev/ping-spotter/).
 
 ## Screenshots
 
@@ -47,7 +47,7 @@ with [Ping Spotter](https://armin.dev/apps/ping-spotter/).
 
 ## License
 
-Copyright (c) 2019-2024 Armin Sebastian
+Copyright (c) 2019-2026 Armin Sebastian
 
 This software is released under the terms of the GNU General Public License v3.0.
 See the [LICENSE](LICENSE) file for further information.
