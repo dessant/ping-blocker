@@ -24,7 +24,7 @@ const {
 const targetEnv = process.env.TARGET_ENV || 'chrome';
 const isProduction = process.env.NODE_ENV === 'production';
 
-const mv3 = ['chrome'].includes(targetEnv);
+const mv3 = ['chrome', 'edge'].includes(targetEnv);
 
 const distDir = path.join(__dirname, 'dist', targetEnv);
 

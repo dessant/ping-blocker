@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
   "version": "0.1.0",
@@ -9,9 +9,13 @@
 
   "minimum_chrome_version": "123.0",
 
-  "permissions": ["storage", "webRequest", "webRequestBlocking", "<all_urls>"],
+  "permissions": ["storage", "webRequest", "declarativeNetRequest"],
 
-  "content_security_policy": "default-src 'self';",
+  "host_permissions": ["<all_urls>"],
+
+  "content_security_policy": {
+    "extension_pages": "default-src 'self';"
+  },
 
   "icons": {
     "16": "src/assets/icons/app/icon-16.png",
@@ -26,7 +30,7 @@
   },
 
   "background": {
-    "page": "src/background/index.html"
+    "service_worker": "src/background/script.js"
   },
 
   "incognito": "split"
