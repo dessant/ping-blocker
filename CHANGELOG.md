@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.1.0](https://github.com/dessant/ping-blocker/compare/v2.0.0...v2.1.0) (2026-06-01)
+
+
+### Features
+
+* upgrade to Manifest V3 in Edge ([a335bfe](https://github.com/dessant/ping-blocker/commit/a335bfed65d829aada6f1c3fc528d3ef660a2bf5))
+
+
+### Bug Fixes
+
+* update dependencies ([b018202](https://github.com/dessant/ping-blocker/commit/b018202a0d5755bc9f9a600f4d7dbc2c39bb5bfb))
+
 ## [2.0.0](https://github.com/dessant/ping-blocker/compare/v1.0.0...v2.0.0) (2024-05-31)
 
 
