@@ -41,10 +41,8 @@ async function isStartup() {
     setupSession: false
   };
 
-  const {
-    storageVersion,
-    appVersion: savedAppVersion
-  } = await browser.storage.local.get(['storageVersion', 'appVersion']);
+  const {storageVersion, appVersion: savedAppVersion} =
+    await browser.storage.local.get(['storageVersion', 'appVersion']);
 
   if (!storageVersion) {
     startup.install = true;

@@ -16,7 +16,7 @@
 
   "permissions": ["storage", "webRequest", "webRequestBlocking", "<all_urls>"],
 
-  "content_security_policy": "default-src 'self'; upgrade-insecure-requests;",
+  "content_security_policy": "default-src 'self';",
 
   "icons": {
     "16": "src/assets/icons/app/icon-16.png",

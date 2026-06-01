@@ -1,8 +1,18 @@
-function runOnce(name, func) {
-  name = `${name}Run`;
+function getStore(name, {content = null} = {}) {
+  name = `${name}Store`;
 
   if (!self[name]) {
-    self[name] = true;
+    self[name] = content || {};
+  }
+
+  return self[name];
+}
+
+function runOnce(name, func) {
+  const store = getStore('run');
+
+  if (!store[name]) {
+    store[name] = true;
 
     if (!func) {
       return true;
@@ -16,4 +26,4 @@ function sleep(ms) {
   return new Promise(resolve => self.setTimeout(resolve, ms));
 }
 
-export {runOnce, sleep};
+export {getStore, runOnce, sleep};
